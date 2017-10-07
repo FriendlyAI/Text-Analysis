@@ -1,6 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """
 Andrew Li
 EOL 2017
+Text Analysis Tool
 """
 
 import docx2txt
