@@ -167,7 +167,7 @@ def about():
     about_window.title('About')
     about_window.mainloop()
 
-
-root = Tk()
-window = Window(root)
-root.mainloop()
+if __name__ == '__main__':
+    root = Tk()
+    window = Window(root)
+    root.mainloop()
