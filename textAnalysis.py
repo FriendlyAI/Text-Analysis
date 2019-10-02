@@ -3,7 +3,7 @@
 
 """
 Andrew Li
-EOL 2017
+Exhibition Of Learning 2017
 Text Analysis Tool
 """
 
@@ -90,7 +90,7 @@ class Window:
         self.filename = filedialog.askopenfilename()
         if self.filename.endswith('.txt') or self.filename.endswith('.docx'):
             self.read_file()
-        elif self.filename is not '':
+        elif self.filename:
             messagebox.showerror(title='ERROR', message='Wrong file format selected. Please try again.')
 
     def read_file(self):
@@ -149,8 +149,8 @@ def about():
     about_window = Toplevel()
 
     about_window.resizable(width=False, height=False)
-    ws = about_window.winfo_screenwidth()  # width of the screen
-    hs = about_window.winfo_screenheight()  # height of the screen
+    ws = about_window.winfo_screenwidth()
+    hs = about_window.winfo_screenheight()
     x = (ws / 2) - (400 / 2)
     y = (hs / 2) - (400 / 2)
     about_window.geometry('%dx%d+%d+%d' % (400, 200, x, y))
@@ -159,18 +159,20 @@ def about():
     fkg = PhotoImage(file='/Users/MacBook/PycharmProjects/Fun/fkg.gif')
 
     fre_text = Label(about_window, text='Scoring formula for the Flesch Reading Ease test.')
-    fre_text.pack()
     fre_image = Label(about_window, image=fre)
-    fre_image.pack()
 
     fkg_text = Label(about_window, text='Scoring formula for the Flesch-Kincaid Grade Level test.')
-    fkg_text.pack()
     fkg_image = Label(about_window, image=fkg)
+    
+    fre_text.pack()
+    fre_image.pack()
+    fkg_text.pack()
     fkg_image.pack()
 
     about_window.title('About')
     about_window.mainloop()
 
+    
 if __name__ == '__main__':
     root = Tk()
     window = Window(root)
