@@ -7,15 +7,16 @@ Exhibition Of Learning 2017
 Text Analysis Tool
 """
 
+import tkinter as tk
+from tkinter import *
+from tkinter import filedialog
+from tkinter import messagebox
+
 import docx2txt
 import matplotlib; matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import pandas as pd
 from textstat.textstat import textstat
-from tkinter import *
-from tkinter import filedialog
-from tkinter import messagebox
-import tkinter as tk
 
 
 class Window:
@@ -105,10 +106,8 @@ class Window:
 
     def score_text(self, txt):
         ease = float('%.2f' % (100 - textstat.flesch_reading_ease(txt)))
-        grade0 = float('%.2f' % textstat.flesch_kincaid_grade(txt))
-        grade = grade0
-        if grade >= 13:
-            grade = '12+ (%s)' % grade
+        grade_raw = float('%.2f' % textstat.flesch_kincaid_grade(txt))
+        grade = grade_raw if grade <= 12 else '12+ (%s)' % grade_raw
 
         self.file.config(text='Filename: %s' % self.filename)
         self.ease.config(text='Flesch Reading Ease scale score: %s' % ease)
@@ -116,7 +115,7 @@ class Window:
         if self.filename not in self.files:
             self.files.append(self.filename[:self.filename.find('.')])
             self.easeScores.append(ease)
-            self.gradeScores.append(grade0)
+            self.gradeScores.append(grade_raw)
 
     def plot(self):
         try:
